@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-c9%kou$+47gsxy4-d(f3$wj7ckzeh!pqeo447w@#e#wgg970&x
 DEBUG = True
 
 ALLOWED_HOSTS = ['supermarket-platform-production.up.railway.app', 'localhost', '127.0.0.1']
-
+CSRF_TRUSTED_ORIGINS = ['https://supermarket-platform-production.up.railway.app']
 
 # Application definition
 
