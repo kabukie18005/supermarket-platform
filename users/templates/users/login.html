@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FreshMart — Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #1a6b3c; --green-light: #2d9e5f;
+            --green-pale: #e8f5ee; --gold: #d4a017;
+            --dark: #0f1f15; --gray: #6b7c72;
+            --light: #f7faf8;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute; top: -200px; right: -200px;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(45,158,95,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        body::after {
+            content: '';
+            position: absolute; bottom: -200px; left: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* LEFT PANEL */
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative; z-index: 1;
+        }
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; font-weight: 900;
+            color: white; text-decoration: none;
+            margin-bottom: 60px; display: block;
+        }
+        .brand span { color: var(--gold); }
+        .left-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; font-weight: 900;
+            color: white; line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .left-title span { color: var(--gold); }
+        .left-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem; line-height: 1.8;
+            font-weight: 300; max-width: 400px;
+        }
+        .features-list {
+            margin-top: 48px;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .feature-item {
+            display: flex; align-items: center; gap: 12px;
+            color: rgba(255,255,255,0.6); font-size: 0.9rem;
+        }
+        .feature-dot {
+            width: 8px; height: 8px;
+            background: var(--green-light);
+            border-radius: 50%; flex-shrink: 0;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            width: 480px;
+            background: rgba(255,255,255,0.03);
+            border-left: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 48px;
+            position: relative; z-index: 1;
+        }
+        .form-card { width: 100%; }
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; font-weight: 700;
+            color: white; margin-bottom: 8px;
+        }
+        .form-subtitle {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.875rem; margin-bottom: 40px;
+        }
+        .form-group { margin-bottom: 20px; }
+        label {
+            display: block;
+            font-size: 0.75rem; font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%; padding: 14px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem; color: white;
+            transition: all 0.2s; outline: none;
+        }
+        input:focus {
+            border-color: var(--green-light);
+            background: rgba(255,255,255,0.08);
+        }
+        input::placeholder { color: rgba(255,255,255,0.2); }
+        .errorlist { list-style: none; margin-top: 6px; }
+        .errorlist li {
+            font-size: 0.78rem; color: #ff6b6b; font-weight: 500;
+        }
+        .btn {
+            width: 100%; padding: 16px;
+            background: var(--green-light); color: white;
+            border: none; border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem; font-weight: 600;
+            cursor: pointer; margin-top: 8px;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background: #3ab870;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(45,158,95,0.3);
+        }
+        .form-footer {
+            text-align: center; margin-top: 28px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.3);
+        }
+        .form-footer a {
+            color: var(--green-light); font-weight: 600;
+            text-decoration: none;
+        }
+        .form-footer a:hover { color: #3ab870; }
+        .divider {
+            display: flex; align-items: center; gap: 16px;
+            margin: 28px 0;
+        }
+        .divider-line {
+            flex: 1; height: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+        .divider-text {
+            color: rgba(255,255,255,0.2);
+            font-size: 0.78rem; font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .left-panel { display: none; }
+            .right-panel { width: 100%; border-left: none; padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel">
+        <a href="{% url 'home' %}" class="brand">Fresh<span>Mart</span></a>
+        <div class="left-title">Welcome<br>back to<br><span>FreshMart</span></div>
+        <p class="left-desc">Your favourite supermarket is just a click away. Fresh produce, quality groceries delivered to your door.</p>
+        <div class="features-list">
+            <div class="feature-item"><div class="feature-dot"></div>Same day delivery across Accra</div>
+            <div class="feature-item"><div class="feature-dot"></div>Pay with Mobile Money or card</div>
+            <div class="feature-item"><div class="feature-dot"></div>Fresh products guaranteed</div>
+            <div class="feature-item"><div class="feature-dot"></div>Best prices in Ghana</div>
+        </div>
+    </div>
+    <div class="right-panel">
+        <div class="form-card">
+            <div class="form-title">Sign In</div>
+            <div class="form-subtitle">Enter your credentials to continue shopping</div>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <ul class="errorlist">
+                        {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn">Sign In →</button>
+            </form>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">OR</div>
+                <div class="divider-line"></div>
+            </div>
+            <div class="form-footer">
+                Don't have an account? <a href="{% url 'register' %}">Create one free</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

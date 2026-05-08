@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart — Fresh · Local · Quality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #1a6b3c; --green-light: #2d9e5f;
+            --green-pale: #e8f5ee; --gold: #d4a017;
+            --dark: #0f1f15; --gray: #6b7c72;
+            --light: #f7faf8; --white: #ffffff;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--light); }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(15,31,21,0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; font-weight: 900;
+            color: white; text-decoration: none;
+        }
+        .brand span { color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 0.875rem; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: white; }
+        .nav-btn {
+            padding: 10px 24px; border-radius: 10px;
+            font-weight: 600; font-size: 0.875rem;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .btn-outline {
+            border: 1.5px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+        .btn-solid { background: var(--green-light); color: white; }
+        .btn-solid:hover { background: #3ab870; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: var(--dark);
+            display: flex; align-items: center;
+            position: relative; overflow: hidden;
+            padding: 120px 60px 80px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -200px; right: -200px;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(45,158,95,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: '';
+            position: absolute; bottom: -200px; left: -100px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-content {
+            max-width: 600px; position: relative; z-index: 1;
+            animation: fadeUp 0.8s ease both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(45,158,95,0.15);
+            border: 1px solid rgba(45,158,95,0.3);
+            color: var(--green-light);
+            padding: 8px 16px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem; font-weight: 900;
+            color: white; line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.6);
+            line-height: 1.8; margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero-btn {
+            padding: 16px 36px; border-radius: 12px;
+            font-size: 1rem; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .hero-btn-primary {
+            background: var(--green-light); color: white;
+        }
+        .hero-btn-primary:hover {
+            background: #3ab870; transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(45,158,95,0.4);
+        }
+        .hero-btn-secondary {
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            color: white;
+        }
+        .hero-btn-secondary:hover { background: rgba(255,255,255,0.15); }
+
+        .hero-stats {
+            position: absolute; right: 60px; top: 50%;
+            transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 24px;
+            z-index: 1;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 24px 32px;
+            text-align: center; backdrop-filter: blur(10px);
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; font-weight: 900;
+            color: var(--gold);
+        }
+        .stat-label {
+            font-size: 0.75rem; color: rgba(255,255,255,0.4);
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 100px 60px;
+            background: white;
+        }
+        .section-label {
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--green-light); text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; font-weight: 700;
+            color: var(--dark); margin-bottom: 60px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            padding: 36px 32px;
+            border-radius: 20px;
+            background: var(--light);
+            border: 1px solid rgba(26,107,60,0.08);
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(26,107,60,0.12);
+        }
+        .feature-icon {
+            font-size: 40px; margin-bottom: 20px;
+            width: 72px; height: 72px;
+            background: var(--green-pale);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--dark); margin-bottom: 10px;
+        }
+        .feature-desc {
+            font-size: 0.875rem; color: var(--gray);
+            line-height: 1.7; font-weight: 300;
+        }
+
+        /* FEATURED PRODUCTS */
+        .featured {
+            padding: 100px 60px;
+            background: var(--light);
+        }
+        .featured-header {
+            display: flex; align-items: flex-end;
+            justify-content: space-between; margin-bottom: 48px;
+        }
+        .view-all {
+            color: var(--green); font-weight: 600;
+            text-decoration: none; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 6px;
+            transition: gap 0.2s;
+        }
+        .view-all:hover { gap: 10px; }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: white; border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(26,107,60,0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(26,107,60,0.06);
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(26,107,60,0.16);
+        }
+        .card-image {
+            height: 180px; background: var(--green-pale);
+            display: flex; align-items: center;
+            justify-content: center; font-size: 56px;
+            overflow: hidden; position: relative;
+        }
+        .card-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .product-card:hover .card-image img { transform: scale(1.05); }
+        .card-badge {
+            position: absolute; top: 12px; left: 12px;
+            background: var(--green); color: white;
+            font-size: 0.68rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 20px;
+        }
+        .card-body { padding: 20px; }
+        .card-category {
+            font-size: 0.7rem; font-weight: 600;
+            color: var(--green-light); text-transform: uppercase;
+            letter-spacing: 1.5px; margin-bottom: 6px;
+        }
+        .card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; font-weight: 700;
+            color: var(--dark); margin-bottom: 12px;
+        }
+        .card-footer {
+            display: flex; align-items: center;
+            justify-content: space-between;
+        }
+        .card-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem; font-weight: 700; color: var(--dark);
+        }
+        .card-price span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem; font-weight: 400; color: var(--gray);
+        }
+        .add-btn {
+            background: var(--green); color: white;
+            border: none; padding: 8px 18px;
+            border-radius: 8px; font-weight: 600;
+            font-size: 0.85rem; cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .add-btn:hover { background: var(--green-light); }
+
+        /* CTA */
+        .cta {
+            padding: 100px 60px;
+            background: var(--dark);
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta::before {
+            content: '';
+            position: absolute; top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(45,158,95,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; font-weight: 900;
+            color: white; margin-bottom: 20px;
+        }
+        .cta h2 span { color: var(--gold); }
+        .cta p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem; margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #070f0a;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+        }
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; font-weight: 900;
+            color: white; margin-bottom: 16px;
+        }
+        .footer-brand span { color: var(--gold); }
+        .footer-desc {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.875rem; line-height: 1.8;
+            font-weight: 300;
+        }
+        .footer-heading {
+            color: white; font-weight: 600;
+            font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 1.5px; margin-bottom: 20px;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none; font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: white; }
+        .footer-bottom {
+            background: #070f0a;
+            padding: 20px 60px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+        }
+        .footer-bottom strong { color: var(--gold); }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 16px 24px; }
+            .hero { padding: 100px 24px 60px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { display: none; }
+            .features, .featured, .cta { padding: 60px 24px; }
+            footer { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+            .footer-bottom { padding: 20px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="{% url 'home' %}" class="brand">Fresh<span>Mart</span></a>
+    <div class="nav-links">
+        <a href="{% url 'product_list' %}">Shop</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'view_cart' %}" class="nav-btn btn-outline">🛒 Cart</a>
+            <a href="{% url 'logout' %}" class="nav-btn btn-solid">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="nav-btn btn-outline">Login</a>
+            <a href="{% url 'register' %}" class="nav-btn btn-solid">Get Started</a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">🌿 Ghana's Freshest Supermarket</div>
+        <h1>Shop Fresh,<br>Live <span>Better</span></h1>
+        <p>FreshMart brings the finest fresh produce, groceries and household essentials straight to your door. Quality you can taste, prices you'll love.</p>
+        <div class="hero-btns">
+            <a href="{% url 'product_list' %}" class="hero-btn hero-btn-primary">Shop Now →</a>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'register' %}" class="hero-btn hero-btn-secondary">Create Account</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_products }}+</div>
+            <div class="stat-label">Products</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">24h</div>
+            <div class="stat-label">Delivery</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">GHS</div>
+            <div class="stat-label">Local Currency</div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <p class="section-label">Why FreshMart</p>
+    <h2 class="section-title">Everything you need,<br>delivered fresh</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <div class="feature-title">Fast Delivery</div>
+            <div class="feature-desc">Same day delivery across Accra and major cities. Your groceries arrive fresh every time.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌿</div>
+            <div class="feature-title">Fresh Products</div>
+            <div class="feature-desc">Sourced daily from local farms and trusted suppliers. Freshness guaranteed or your money back.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💳</div>
+            <div class="feature-title">Easy Payments</div>
+            <div class="feature-desc">Pay with Mobile Money, MTN, Vodafone or bank card. Safe and secure checkout powered by Paystack.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏷️</div>
+            <div class="feature-title">Best Prices</div>
+            <div class="feature-desc">Competitive prices on all products with regular deals and discounts for loyal customers.</div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured">
+    <div class="featured-header">
+        <div>
+            <p class="section-label">Our Products</p>
+            <h2 class="section-title">Fresh picks for you</h2>
+        </div>
+        <a href="{% url 'product_list' %}" class="view-all">View all products →</a>
+    </div>
+    <div class="products-grid">
+        {% for product in featured_products %}
+        <div class="product-card">
+            <div class="card-image">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% elif product.category == "Grains" %}🌾
+                {% elif product.category == "Dairy" %}🥛
+                {% elif product.category == "Bakery" %}🍞
+                {% elif product.category == "Oils" %}🫙
+                {% else %}🛒{% endif %}
+                <span class="card-badge">Fresh</span>
+            </div>
+            <div class="card-body">
+                <div class="card-category">{{ product.category }}</div>
+                <div class="card-name">{{ product.name }}</div>
+                <div class="card-footer">
+                    <div class="card-price"><span>GHS </span>{{ product.price }}</div>
+                    <a href="{% url 'add_to_cart' product.id %}" class="add-btn">+ Add</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to shop <span>fresh</span>?</h2>
+        <p>Join thousands of happy customers across Ghana</p>
+        <a href="{% url 'product_list' %}" class="hero-btn hero-btn-primary">Start Shopping →</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <div class="footer-brand">Fresh<span>Mart</span></div>
+        <p class="footer-desc">Ghana's premier online supermarket. Fresh produce, quality groceries and household essentials delivered to your door.</p>
+    </div>
+    <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'product_list' %}">Shop</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+    </div>
+    <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+            <li><a href="#">Accra, Ghana</a></li>
+            <li><a href="#">support@freshmart.gh</a></li>
+            <li><a href="#">+233 XX XXX XXXX</a></li>
+        </ul>
+    </div>
+</footer>
+<div class="footer-bottom">
+    © 2026 <strong>FreshMart</strong> — Built with Django & Python
+</div>
+
+</body>
+</html>
