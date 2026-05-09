@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'products',
     'users',
     'cart',
+    'cloudinary_storage',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,15 @@ PAYSTACK_PUBLIC_KEY = 'pk_test_272fa3f54a708ff15413ce4237b06b9d78a28415'
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Cloudinary settings
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dtuzohigm',
+    'API_KEY': '829558398343652',
+    'API_SECRET': 'czqABaMe_BpaInk4vmvm0XtXjxo',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
