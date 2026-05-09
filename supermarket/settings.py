@@ -126,14 +126,16 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Cloudinary settings
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import os
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dtuzohigm',
-    'API_KEY': '829558398343652',
-    'API_SECRET': 'czqABaMe_BpaInk4vmvm0XtXjxo',
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', 'dtuzohigm'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '829558398343652'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', 'czqABaMe_BpaInk4vmvm0XtXjxo'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
