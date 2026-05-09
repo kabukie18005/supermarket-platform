@@ -1,0 +1,392 @@
+[
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "Rice 5kg",
+    "price": "100.00",
+    "category": "Grains",
+    "stock": 100,
+    "description": "Premium long grain rice",
+    "image": "products/rice.jpg",
+    "created_at": "2026-05-05T18:57:28.140Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "Whole Milk 1L",
+    "price": "11.00",
+    "category": "Dairy",
+    "stock": 200,
+    "description": "Fresh full cream whole milk",
+    "image": "products/milk.jpg",
+    "created_at": "2026-05-05T18:59:52.884Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "Sliced Bread",
+    "price": "6.00",
+    "category": "Bakery",
+    "stock": 80,
+    "description": "Soft sliced white bread loaf",
+    "image": "products/bread.jpg",
+    "created_at": "2026-05-05T19:00:45.616Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "Cooking Oil 2L",
+    "price": "32.00",
+    "category": "Oils",
+    "stock": 120,
+    "description": "Pure vegetable cooking oil",
+    "image": "products/oil.jfif",
+    "created_at": "2026-05-05T19:01:42.596Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "Eggs 30 Pack",
+    "price": "28.00",
+    "category": "Dairy",
+    "stock": 95,
+    "description": "Fresh large size eggs pack of 30",
+    "image": "products/eggs.png",
+    "created_at": "2026-05-05T19:02:51.645Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "name": "Tomato Paste 400g",
+    "price": "5.50",
+    "category": "Canned Goods",
+    "stock": 200,
+    "description": "Rich tomato paste for cooking",
+    "image": "products/tomato_paste.jfif",
+    "created_at": "2026-05-06T21:53:59.988Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "name": "Indomie Noodles",
+    "price": "16.00",
+    "category": "Noodles",
+    "stock": 200,
+    "description": "Instant noodles",
+    "image": "products/indomie.jfif",
+    "created_at": "2026-05-06T21:57:42.701Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "name": "Milo 400g",
+    "price": "50.00",
+    "category": "Beverages",
+    "stock": 300,
+    "description": "Chocolate malt drink powder, rich in energy and nutrients",
+    "image": "products/milo.jpg",
+    "created_at": "2026-05-06T22:01:35.810Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "name": "Tuna Fish Can",
+    "price": "8.00",
+    "category": "Canned Goods",
+    "stock": 180,
+    "description": "Premium chunk tuna in brine, high in protein",
+    "image": "products/tuna.jfif",
+    "created_at": "2026-05-06T22:05:03.456Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "name": "Sugar 1kg",
+    "price": "12.00",
+    "category": "Baking",
+    "stock": 300,
+    "description": "Pure white refined sugar for cooking, baking and beverages",
+    "image": "products/sugar.jpg",
+    "created_at": "2026-05-06T22:07:02.904Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "name": "Sardines",
+    "price": "6.50",
+    "category": "Canned Goods",
+    "stock": 250,
+    "description": "Tasty sardines in tomato sauce, great with rice and bread",
+    "image": "products/sardines.jfif",
+    "created_at": "2026-05-06T22:10:23.677Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "name": "Omo Detergent",
+    "price": "15.00",
+    "category": "Household",
+    "stock": 300,
+    "description": "Powerful washing powder that removes tough stains",
+    "image": "products/omo.jfif",
+    "created_at": "2026-05-06T22:12:18.870Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "name": "Chicken 1kg",
+    "price": "55.00",
+    "category": "Meat & Poultry",
+    "stock": 150,
+    "description": "Fresh whole chicken, hormone free and locally sourced",
+    "image": "products/chicken.jpeg",
+    "created_at": "2026-05-06T22:17:12.481Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "name": "Mineral Water 1.5L",
+    "price": "4.00",
+    "category": "Beverages",
+    "stock": 400,
+    "description": "Pure natural mineral water, refreshing and healthy",
+    "image": "products/water.jpg",
+    "created_at": "2026-05-06T22:19:25.436Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "name": "Suasage",
+    "price": "19.00",
+    "category": "Meat & Poultry",
+    "stock": 50,
+    "description": "Fresh suasages",
+    "image": "products/suasage.jpeg",
+    "created_at": "2026-05-06T23:16:39.932Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "name": "Flour 1kg",
+    "price": "50.00",
+    "category": "Grains",
+    "stock": 50,
+    "description": "Versatile, reliable white flour perfect for everyday baking",
+    "image": "products/flour.webp",
+    "created_at": "2026-05-06T23:18:22.010Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "name": "Butter 250g",
+    "price": "18.00",
+    "category": "Dairy",
+    "stock": 150,
+    "description": "Creamy salted butter, great for cooking, baking and spreading on bread",
+    "image": "products/butter.jfif",
+    "created_at": "2026-05-08T05:14:30.967Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "name": "Corn Flakes 500g",
+    "price": "45.00",
+    "category": "Cereals",
+    "stock": 300,
+    "description": "Crispy golden corn flakes, a healthy and delicious breakfast cereal",
+    "image": "products/corm_flask.jfif",
+    "created_at": "2026-05-08T05:18:44.818Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "name": "Mayonnaise 500g",
+    "price": "22.00",
+    "category": "Condiments",
+    "stock": 180,
+    "description": "Creamy rich mayonnaise, perfect for sandwiches, salads and dips",
+    "image": "products/mayonise.jfif",
+    "created_at": "2026-05-08T05:24:27.408Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "name": "Ketchup 500g",
+    "price": "15.00",
+    "category": "Condiments",
+    "stock": 300,
+    "description": "Tangy tomato ketchup, great with fries, burgers and snacks",
+    "image": "products/ketchup.jfif",
+    "created_at": "2026-05-08T05:26:45.321Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "name": "Honey 500g",
+    "price": "55.00",
+    "category": "Baking",
+    "stock": 200,
+    "description": "Pure natural honey, rich in antioxidants and naturally sweet",
+    "image": "products/honney.jfif",
+    "created_at": "2026-05-08T05:28:48.039Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "name": "Peanut Butter 500g",
+    "price": "28.00",
+    "category": "Condiments",
+    "stock": 15,
+    "description": "Smooth creamy peanut butter, high in protein and great on bread",
+    "image": "products/peanut.jfif",
+    "created_at": "2026-05-08T05:31:19.219Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "name": "Pasta 500g",
+    "price": "8.00",
+    "category": "Noodles",
+    "stock": 199,
+    "description": "Premium Italian style pasta, perfect for quick and delicious meals",
+    "image": "products/pasra.jfif",
+    "created_at": "2026-05-08T05:33:27.789Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "name": "Tissue Paper Pack",
+    "price": "20.00",
+    "category": "Household",
+    "stock": 59,
+    "description": "Soft 3 ply tissue paper, gentle and strong for everyday use",
+    "image": "products/tissue.jfif",
+    "created_at": "2026-05-08T05:35:48.561Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "name": "Dish Soap 500ml",
+    "price": "12.00",
+    "category": "Household",
+    "stock": 180,
+    "description": "Powerful dish washing liquid that cuts through grease and leaves dishes sparkling",
+    "image": "products/soap.jfif",
+    "created_at": "2026-05-08T05:39:59.602Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "name": "Bleach 1L",
+    "price": "20.00",
+    "category": "Household",
+    "stock": 150,
+    "description": "Strong multipurpose bleach for cleaning, disinfecting and whitening",
+    "image": "products/bleah.jfif",
+    "created_at": "2026-05-08T05:42:41.637Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 27,
+  "fields": {
+    "name": "Yoghurt 500ml",
+    "price": "15.00",
+    "category": "Dairy",
+    "stock": 110,
+    "description": "Creamy natural yoghurt, packed with probiotics and great taste",
+    "image": "products/yogo.jfif",
+    "created_at": "2026-05-08T05:49:55.347Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 28,
+  "fields": {
+    "name": "Chocolate 100g",
+    "price": "12.00",
+    "category": "Snacks",
+    "stock": 200,
+    "description": "Rich smooth milk chocolate bar, perfect for a sweet treat",
+    "image": "products/coco.jfif",
+    "created_at": "2026-05-08T05:52:26.632Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 29,
+  "fields": {
+    "name": "Biscuits Pack",
+    "price": "6.00",
+    "category": "Snacks",
+    "stock": 69,
+    "description": "Crunchy assorted biscuits, great for snacking anytime of the day",
+    "image": "products/bu.webp",
+    "created_at": "2026-05-08T05:55:42.632Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 30,
+  "fields": {
+    "name": "Coconut Oil 1L",
+    "price": "35.00",
+    "category": "Oils",
+    "stock": 100,
+    "description": "Pure virgin coconut oil, ideal for cooking, baking and skincare",
+    "image": "products/coconut.jfif",
+    "created_at": "2026-05-08T05:58:53.417Z"
+  }
+}
+]
