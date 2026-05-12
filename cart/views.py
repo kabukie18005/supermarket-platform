@@ -52,7 +52,7 @@ def checkout(request):
         'email': request.user.email or 'customer@freshmart.com',
         'amount': total_kobo,
         'currency': 'GHS',
-        'callback_url': 'http://127.0.0.1:8000/cart/payment-success/',
+        'callback_url': request.build_absolute_uri('/cart/payment-success/'),
         'metadata': {
             'user_id': request.user.id,
             'cart_items': [
