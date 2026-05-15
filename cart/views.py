@@ -128,3 +128,31 @@ def order_list(request):
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     return render(request, 'cart/order_detail.html', {'order': order})
+@login_required
+def dashboard(request):
+    if not request.user.is_staff:
+        return redirect('product_list')
+    
+    from django.db.models import Sum, Count
+    from datetime import datetime, timedelta
+
+    total_revenue = Order.objects.aggregate(Sum('total_amount'))['total_amount__sum'] or 0
+    total_orders = Order.objects.count()
+    total_products = Product.objects.count()
+    total_customers = User.objects.filter(is_staff=False).count()
+    recent_orders = Order.objects.order_by('-created_at')[:10]
+    top_products = OrderItem.objects.values(
+        'product__name'
+    ).annotate(
+        total_qty=Sum('quantity'),
+        total_revenue=Sum('price')
+    ).order_by('-total_qty')[:5]
+
+    return render(request, 'cart/dashboard.html', {
+        'total_revenue': total_revenue,
+        'total_orders': total_orders,
+        'total_products': total_products,
+        'total_customers': total_customers,
+        'recent_orders': recent_orders,
+        'top_products': top_products,
+    })
