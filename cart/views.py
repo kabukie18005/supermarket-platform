@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 from products.models import Product
-from .models import CartItem
+from .models import CartItem, Order, OrderItem
 import requests
 
 @login_required
@@ -42,7 +42,7 @@ def checkout(request):
         return redirect('view_cart')
     
     total = sum(item.get_total() for item in cart_items)
-    total_kobo = int(total * 100)  # Paystack uses pesewas (smallest unit)
+    total_pesewas = int(total * 100)
     
     headers = {
         'Authorization': f'Bearer {settings.PAYSTACK_SECRET_KEY}',
@@ -50,7 +50,7 @@ def checkout(request):
     }
     data = {
         'email': request.user.email or 'customer@freshmart.com',
-        'amount': total_kobo,
+        'amount': total_pesewas,
         'currency': 'GHS',
         'callback_url': request.build_absolute_uri('/cart/payment-success/'),
         'metadata': {
@@ -91,10 +91,40 @@ def payment_success(request):
         result = response.json()
         
         if result['status'] and result['data']['status'] == 'success':
+            cart_items = CartItem.objects.filter(user=request.user)
+            total = sum(item.get_total() for item in cart_items)
+
+            # Create order
+            order = Order.objects.create(
+                user=request.user,
+                reference=reference,
+                total_amount=total,
+                status='pending'
+            )
+
+            # Create order items
+            for item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity,
+                    price=item.product.price
+                )
+
             # Clear the cart
-            CartItem.objects.filter(user=request.user).delete()
+            cart_items.delete()
             messages.success(request, 'Payment successful! Your order has been placed.')
-            return render(request, 'cart/payment_success.html')
+            return render(request, 'cart/payment_success.html', {'order': order})
     
     messages.error(request, 'Payment verification failed.')
     return redirect('view_cart')
+
+@login_required
+def order_list(request):
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'cart/order_list.html', {'orders': orders})
+
+@login_required
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'cart/order_detail.html', {'order': order})

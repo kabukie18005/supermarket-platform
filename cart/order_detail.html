@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart — Order Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #1a6b3c; --green-light: #2d9e5f; --green-pale: #e8f5ee;
+            --gold: #d4a017; --dark: #0f1f15; --gray: #6b7c72;
+            --light: #f7faf8; --white: #ffffff;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--light); color: var(--dark); min-height: 100vh; }
+        header { background: var(--dark); padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: white; text-decoration: none; }
+        .brand span { color: var(--gold); }
+        .nav-btn { padding: 10px 20px; border-radius: 10px; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+        .back-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+        main { max-width: 800px; margin: 48px auto; padding: 0 40px; }
+        .order-header { background: var(--white); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 24px rgba(26,107,60,0.08); }
+        .order-header h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 16px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 16px; }
+        .meta-item label { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); }
+        .meta-item p { font-size: 0.95rem; font-weight: 500; margin-top: 4px; }
+        .status-badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-processing { background: #cce5ff; color: #004085; }
+        .status-shipped { background: #d4edda; color: #155724; }
+        .status-delivered { background: var(--green-pale); color: var(--green); }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .items-card { background: var(--white); border-radius: 16px; padding: 28px; box-shadow: 0 4px 24px rgba(26,107,60,0.08); }
+        .items-card h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; }
+        .order-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(26,107,60,0.06); }
+        .order-item:last-child { border-bottom: none; }
+        .item-name { font-weight: 500; }
+        .item-qty { font-size: 0.85rem; color: var(--gray); margin-top: 2px; }
+        .item-price { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+        .order-total { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; margin-top: 8px; border-top: 2px solid var(--green-pale); }
+        .total-label { font-weight: 600; font-size: 1rem; }
+        .total-amount { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--green); }
+        footer { background: var(--dark); color: rgba(255,255,255,0.4); text-align: center; padding: 24px; font-size: 0.82rem; margin-top: 80px; }
+        footer strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+<header>
+    <a href="{% url 'product_list' %}" class="brand">Fresh<span>Mart</span></a>
+    <a href="{% url 'order_list' %}" class="nav-btn back-btn">← My Orders</a>
+</header>
+
+<main>
+    <div class="order-header">
+        <h1>Order Details</h1>
+        <div class="meta-grid">
+            <div class="meta-item">
+                <label>Reference</label>
+                <p>{{ order.reference|slice:":16" }}...</p>
+            </div>
+            <div class="meta-item">
+                <label>Date</label>
+                <p>{{ order.created_at|date:"M d, Y" }}</p>
+            </div>
+            <div class="meta-item">
+                <label>Status</label>
+                <p><span class="status-badge status-{{ order.status }}">{{ order.get_status_display }}</span></p>
+            </div>
+            <div class="meta-item">
+                <label>Total</label>
+                <p>GHS {{ order.total_amount }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="items-card">
+        <h2>Items Ordered</h2>
+        {% for item in order.items.all %}
+        <div class="order-item">
+            <div>
+                <div class="item-name">{{ item.product.name }}</div>
+                <div class="item-qty">Qty: {{ item.quantity }} × GHS {{ item.price }}</div>
+            </div>
+            <div class="item-price">GHS {{ item.get_total }}</div>
+        </div>
+        {% endfor %}
+        <div class="order-total">
+            <span class="total-label">Total Paid</span>
+            <span class="total-amount">GHS {{ order.total_amount }}</span>
+        </div>
+    </div>
+</main>
+
+<footer><p>© 2026 <strong>FreshMart</strong></p></footer>
+</body>
+</html>

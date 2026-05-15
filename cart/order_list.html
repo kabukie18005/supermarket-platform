@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart — My Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #1a6b3c; --green-light: #2d9e5f; --green-pale: #e8f5ee;
+            --gold: #d4a017; --dark: #0f1f15; --gray: #6b7c72;
+            --light: #f7faf8; --white: #ffffff;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--light); color: var(--dark); min-height: 100vh; }
+        header { background: var(--dark); padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: white; text-decoration: none; }
+        .brand span { color: var(--gold); }
+        .nav-btn { padding: 10px 20px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+        .shop-btn { background: var(--green-light); color: white; }
+        main { max-width: 900px; margin: 48px auto; padding: 0 40px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 32px; }
+        .empty { text-align: center; padding: 80px 20px; color: var(--gray); }
+        .empty h2 { font-size: 1.5rem; margin-bottom: 12px; }
+        .order-card { background: var(--white); border-radius: 16px; padding: 24px 28px; margin-bottom: 16px; box-shadow: 0 4px 24px rgba(26,107,60,0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border: 1px solid rgba(26,107,60,0.06); transition: transform 0.2s; }
+        .order-card:hover { transform: translateY(-3px); }
+        .order-ref { font-size: 0.8rem; color: var(--gray); margin-bottom: 4px; }
+        .order-date { font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
+        .order-amount { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--dark); }
+        .status-badge { padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-processing { background: #cce5ff; color: #004085; }
+        .status-shipped { background: #d4edda; color: #155724; }
+        .status-delivered { background: var(--green-pale); color: var(--green); }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .view-btn { background: var(--green); color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-size: 0.875rem; font-weight: 600; transition: all 0.2s; }
+        .view-btn:hover { background: var(--green-light); }
+        footer { background: var(--dark); color: rgba(255,255,255,0.4); text-align: center; padding: 24px; font-size: 0.82rem; margin-top: 80px; }
+        footer strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+<header>
+    <a href="{% url 'product_list' %}" class="brand">Fresh<span>Mart</span></a>
+    <a href="{% url 'product_list' %}" class="nav-btn shop-btn">🛒 Shop</a>
+</header>
+
+<main>
+    <h1>My Orders</h1>
+    {% if orders %}
+        {% for order in orders %}
+        <div class="order-card">
+            <div>
+                <div class="order-ref">Order #{{ order.reference|slice:":12" }}...</div>
+                <div class="order-amount">GHS {{ order.total_amount }}</div>
+                <div class="order-date">{{ order.created_at|date:"M d, Y · g:i A" }}</div>
+            </div>
+            <span class="status-badge status-{{ order.status }}">{{ order.get_status_display }}</span>
+            <a href="{% url 'order_detail' order.id %}" class="view-btn">View Details →</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty">
+            <h2>No orders yet</h2>
+            <p>Once you make a purchase, your orders will appear here.</p><br>
+            <a href="{% url 'product_list' %}" class="view-btn">Start Shopping</a>
+        </div>
+    {% endif %}
+</main>
+
+<footer><p>© 2026 <strong>FreshMart</strong></p></footer>
+</body>
+</html>
