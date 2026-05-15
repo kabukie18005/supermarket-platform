@@ -448,19 +448,9 @@
     <div class="nav-inner">
         <span class="nav-label">Browse:</span>
         <button class="filter-btn active">All Products</button>
-        <button class="filter-btn">Grains</button>
-        <button class="filter-btn">Dairy</button>
-        <button class="filter-btn">Bakery</button>
-        <button class="filter-btn">Oils</button>
-        <button class="filter-btn">Beverages</button>
-        <button class="filter-btn">Canned Goods</button>
-        <button class="filter-btn">Noodles</button>
-        <button class="filter-btn">Baking</button>
-        <button class="filter-btn">Household</button>
-        <button class="filter-btn">Meat & Poultry</button>
-        <button class="filter-btn">Cereals</button>
-        <button class="filter-btn">Condiments</button>
-        <button class="filter-btn">Snacks</button>
+{% for category in categories %}
+<button class="filter-btn">{{ category }}</button>
+{% endfor %}
     </div>
 </nav>
 
