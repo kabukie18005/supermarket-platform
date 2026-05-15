@@ -11,4 +11,8 @@ def home(request):
 
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'products/product_list.html', {'products': products})
+    categories = Product.objects.values_list('category', flat=True).distinct()
+    return render(request, 'products/product_list.html', {
+        'products': products,
+        'categories': categories
+    })
