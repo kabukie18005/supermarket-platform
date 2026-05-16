@@ -443,7 +443,29 @@
         </div>
     </div>
 </header>
-
+<!-- SEARCH BAR -->
+<div style="background: var(--white); border-bottom: 1px solid rgba(26,107,60,0.08); padding: 12px 40px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <form method="GET" action="{% url 'product_list' %}" style="display: flex; gap: 8px; max-width: 500px;">
+            <input 
+                type="text" 
+                name="q" 
+                value="{{ query }}"
+                placeholder="Search products, categories..." 
+                style="flex: 1; padding: 10px 16px; border: 1.5px solid rgba(26,107,60,0.2); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none; background: var(--light); color: var(--dark);"
+            >
+            <button type="submit" style="background: var(--green); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                🔍 Search
+            </button>
+            {% if query %}
+            <a href="{% url 'product_list' %}" style="background: rgba(26,107,60,0.1); color: var(--green); border: none; padding: 10px 16px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; cursor: pointer; font-size: 0.875rem; text-decoration: none; display: flex; align-items: center;">✕ Clear</a>
+            {% endif %}
+        </form>
+        {% if query %}
+        <p style="margin-top: 6px; font-size: 0.8rem; color: var(--gray);">Showing results for "<strong>{{ query }}</strong>" — {{ products|length }} found</p>
+        {% endif %}
+    </div>
+</div>
 <nav>
     <nav>
     <div class="nav-inner">

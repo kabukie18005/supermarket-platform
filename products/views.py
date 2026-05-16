@@ -10,9 +10,21 @@ def home(request):
     })
 
 def product_list(request):
+    query = request.GET.get('q', '')
     products = Product.objects.all()
+    
+    if query:
+        products = products.filter(
+            name__icontains=query
+        ) | products.filter(
+            category__icontains=query
+        ) | products.filter(
+            description__icontains=query
+        )
+    
     categories = Product.objects.values_list('category', flat=True).distinct()
     return render(request, 'products/product_list.html', {
         'products': products,
-        'categories': categories
+        'categories': categories,
+        'query': query
     })
