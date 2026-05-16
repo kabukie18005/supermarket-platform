@@ -213,7 +213,7 @@
             labels: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
             datasets: [{
                 data: [
-                    {{ recent_orders|length }}, 0, 0, 0, 0
+                    {{ pending }}, {{ processing }}, {{ shipped }}, {{ delivered }}, {{ cancelled }}
                 ],
                 backgroundColor: ['#d4a017', '#2d9e5f', '#1a6b3c', '#e8f5ee', '#e05c2a'],
                 borderWidth: 0,

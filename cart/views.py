@@ -148,6 +148,11 @@ def dashboard(request):
         total_qty=Sum('quantity'),
         total_revenue=Sum('price')
     ).order_by('-total_qty')[:5]
+    # Status breakdown for chart
+    status_counts = Order.objects.values('status').annotate(count=Count('id'))
+    status_data = {'pending': 0, 'processing': 0, 'shipped': 0, 'delivered': 0, 'cancelled': 0}
+    for item in status_counts:
+        status_data[item['status']] = item['count']
 
     return render(request, 'cart/dashboard.html', {
         'total_revenue': total_revenue,
@@ -156,4 +161,9 @@ def dashboard(request):
         'total_customers': total_customers,
         'recent_orders': recent_orders,
         'top_products': top_products,
+        'pending': status_data['pending'],
+        'processing': status_data['processing'],
+        'shipped': status_data['shipped'],
+        'delivered': status_data['delivered'],
+        'cancelled': status_data['cancelled'],
     })
