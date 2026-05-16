@@ -28,3 +28,8 @@ def product_list(request):
         'categories': categories,
         'query': query
     })
+def about(request):
+    return render(request, 'products/about.html')
+
+def contact(request):
+    return render(request, 'products/contact.html')
