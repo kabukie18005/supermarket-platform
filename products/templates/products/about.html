@@ -15,7 +15,6 @@
         }
         body { font-family: 'Instrument Sans', sans-serif; background: var(--white); color: var(--ink); }
 
-        /* NAVBAR */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 500;
             padding: 0 56px; height: 72px;
@@ -35,16 +34,13 @@
         .pill-solid { background: var(--forest); color: var(--white); }
         .pill-solid:hover { background: var(--moss); }
 
-        /* HERO */
         .about-hero {
             padding: 160px 80px 100px;
             background: var(--ink);
-            position: relative; overflow: hidden;
-            text-align: center;
+            position: relative; overflow: hidden; text-align: center;
         }
         .about-hero::before {
-            content: '';
-            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+            content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
             width: 800px; height: 800px;
             background: radial-gradient(circle, rgba(46,125,79,0.2) 0%, transparent 65%);
             border-radius: 50%;
@@ -55,7 +51,6 @@
         .about-hero h1 em { color: var(--amber); font-style: italic; }
         .about-hero p { font-size: 1rem; color: rgba(253,252,249,0.5); font-weight: 300; line-height: 1.8; max-width: 560px; margin: 24px auto 0; position: relative; z-index: 1; }
 
-        /* STORY */
         .story { padding: 120px 80px; background: var(--white); }
         .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
         .story-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--moss); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
@@ -65,11 +60,10 @@
         .story p { font-size: 0.95rem; color: var(--gray); line-height: 1.9; font-weight: 300; margin-bottom: 16px; }
         .story-visual { background: var(--parchment); border-radius: 24px; padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
         .story-visual::before { content: 'Fresh'; font-family: 'Cormorant Garamond', serif; font-size: 10rem; font-weight: 700; font-style: italic; color: rgba(46,125,79,0.08); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
-        .story-icon { font-size: 5rem; margin-bottom: 20px; position: relative; z-index: 1; }
+        .story-icon { margin-bottom: 20px; position: relative; z-index: 1; display: flex; justify-content: center; }
         .story-visual h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--forest); position: relative; z-index: 1; }
         .story-visual p { font-size: 0.875rem; color: var(--gray); margin-top: 8px; position: relative; z-index: 1; margin-bottom: 0; }
 
-        /* VALUES */
         .values { padding: 120px 80px; background: var(--parchment); }
         .values-header { text-align: center; margin-bottom: 64px; }
         .values-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
@@ -78,19 +72,24 @@
         .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .value-card { background: var(--white); border-radius: 20px; padding: 40px 32px; border: 1px solid rgba(46,125,79,0.08); transition: transform 0.3s, box-shadow 0.3s; }
         .value-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(28,74,40,0.12); }
-        .value-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .value-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: var(--light-gray);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        .value-card:hover .value-icon { background: rgba(46,125,79,0.1); }
+        .value-icon svg { width: 24px; height: 24px; }
         .value-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
         .value-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.8; font-weight: 300; }
 
-        /* STATS */
         .stats-section { padding: 100px 80px; background: var(--forest); }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
-        .stat-item { }
         .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: var(--amber); line-height: 1; }
         .stat-num sup { font-size: 1.5rem; }
         .stat-label { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(253,252,249,0.5); margin-top: 8px; }
 
-        /* CTA */
         .about-cta { padding: 120px 80px; background: var(--white); text-align: center; }
         .about-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 600; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 16px; }
         .about-cta h2 em { font-style: italic; color: var(--moss); }
@@ -100,7 +99,6 @@
         .btn-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 15px 32px; border-radius: 100px; border: 1.5px solid rgba(46,125,79,0.3); color: var(--forest); font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; transition: all 0.25s; margin-left: 12px; }
         .btn-secondary:hover { background: var(--forest); color: var(--white); }
 
-        /* FOOTER */
         footer { background: #060d08; padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.04); }
         .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; }
         .footer-brand em { color: var(--amber); font-style: italic; }
@@ -125,7 +123,6 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
     <a href="{% url 'home' %}" class="brand">Fresh<em>Mart</em></a>
     <div class="nav-center">
@@ -135,7 +132,7 @@
     </div>
     <div class="nav-actions">
         {% if user.is_authenticated %}
-            <a href="{% url 'view_cart' %}" class="nav-pill pill-ghost">🛒 Cart</a>
+            <a href="{% url 'view_cart' %}" class="nav-pill pill-ghost">Cart</a>
             <a href="{% url 'logout' %}" class="nav-pill pill-solid">Logout</a>
         {% else %}
             <a href="{% url 'login' %}" class="nav-pill pill-ghost">Login</a>
@@ -144,14 +141,12 @@
     </div>
 </nav>
 
-<!-- HERO -->
 <section class="about-hero">
     <div class="hero-eyebrow">Our Story</div>
     <h1>Fresh food, <em>real people</em></h1>
     <p>We started FreshMart with one simple belief — everyone in Ghana deserves access to fresh, quality groceries at fair prices, delivered right to their door.</p>
 </section>
 
-<!-- STORY -->
 <section class="story">
     <div class="story-grid">
         <div>
@@ -162,14 +157,17 @@
             <p>From our humble beginnings, we've grown to serve thousands of happy customers across Accra and beyond, and we're just getting started.</p>
         </div>
         <div class="story-visual">
-            <div class="story-icon">🌱</div>
+            <div class="story-icon">
+                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22V12"/><path d="M12 12C10 9 7 7 7 4a5 5 0 0110 0c0 3-3 5-5 8z"/><path d="M9 18c-2 0-4-1-5-3"/><path d="M15 18c2 0 4-1 5-3"/>
+                </svg>
+            </div>
             <h3>Farm to Door</h3>
             <p>Sourced fresh every morning from local Ghanaian farms</p>
         </div>
     </div>
 </section>
 
-<!-- VALUES -->
 <section class="values">
     <div class="values-header">
         <h2>What we <em>stand for</em></h2>
@@ -177,39 +175,62 @@
     </div>
     <div class="values-grid">
         <div class="value-card">
-            <div class="value-icon">🌿</div>
+            <div class="value-icon">
+                <svg fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M12 22V12"/><path d="M12 12C10 9 7 7 7 4a5 5 0 0110 0c0 3-3 5-5 8z"/>
+                </svg>
+            </div>
             <div class="value-title">Freshness First</div>
             <div class="value-desc">We source products daily and guarantee freshness on every order. If it's not fresh, we'll replace it — no questions asked.</div>
         </div>
         <div class="value-card">
-            <div class="value-icon">🤝</div>
+            <div class="value-icon">
+                <svg fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+            </div>
             <div class="value-title">Community First</div>
             <div class="value-desc">We partner with local Ghanaian farmers and suppliers, keeping money in the community and supporting local livelihoods.</div>
         </div>
         <div class="value-card">
-            <div class="value-icon">💰</div>
+            <div class="value-icon">
+                <svg fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                </svg>
+            </div>
             <div class="value-title">Fair Prices</div>
             <div class="value-desc">Quality groceries shouldn't break the bank. We work hard to keep our prices competitive and honest for every customer.</div>
         </div>
         <div class="value-card">
-            <div class="value-icon">🚀</div>
+            <div class="value-icon">
+                <svg fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                </svg>
+            </div>
             <div class="value-title">Fast Delivery</div>
             <div class="value-desc">We know you're busy. That's why we offer same-day delivery across Accra so your groceries arrive when you need them.</div>
         </div>
         <div class="value-card">
-            <div class="value-icon">🔒</div>
+            <div class="value-icon">
+                <svg fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
+            </div>
             <div class="value-title">Safe Payments</div>
             <div class="value-desc">Every transaction is secured by Paystack. Shop with confidence knowing your payment details are always protected.</div>
         </div>
         <div class="value-card">
-            <div class="value-icon">♻️</div>
+            <div class="value-icon">
+                <svg fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                </svg>
+            </div>
             <div class="value-title">Sustainability</div>
             <div class="value-desc">We're committed to sustainable sourcing and reducing food waste. Good for you, good for Ghana, good for the planet.</div>
         </div>
     </div>
 </section>
 
-<!-- STATS -->
 <section class="stats-section">
     <div class="stats-grid">
         <div class="stat-item">
@@ -231,7 +252,6 @@
     </div>
 </section>
 
-<!-- CTA -->
 <section class="about-cta">
     <h2>Ready to shop <em>fresh</em>?</h2>
     <p>Join thousands of happy customers enjoying fresh groceries delivered to their door.</p>
