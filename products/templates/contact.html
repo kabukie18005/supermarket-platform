@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart — Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --ink: #0d1a10; --forest: #1c4a28; --moss: #2e7d4f;
+            --sage: #5a9e72; --cream: #f5f0e8; --parchment: #ede8dc;
+            --gold: #c8960c; --amber: #e8b84b; --white: #fdfcf9;
+            --gray: #7a8a7e; --light-gray: #e8ede9;
+        }
+        body { font-family: 'Instrument Sans', sans-serif; background: var(--white); color: var(--ink); }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 0 56px; height: 72px; display: flex; align-items: center; justify-content: space-between; background: rgba(253,252,249,0.92); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(46,125,79,0.12); }
+        .brand { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+        .brand em { color: var(--moss); font-style: italic; }
+        .nav-center { display: flex; align-items: center; gap: 40px; }
+        .nav-center a { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+        .nav-center a:hover, .nav-center a.active { color: var(--ink); }
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+        .nav-pill { padding: 9px 22px; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; transition: all 0.25s; }
+        .pill-ghost { border: 1.5px solid rgba(46,125,79,0.3); color: var(--forest); }
+        .pill-ghost:hover { background: var(--light-gray); }
+        .pill-solid { background: var(--forest); color: var(--white); }
+        .pill-solid:hover { background: var(--moss); }
+
+        /* HERO */
+        .contact-hero { padding: 160px 80px 100px; background: var(--ink); position: relative; overflow: hidden; text-align: center; }
+        .contact-hero::before { content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(46,125,79,0.2) 0%, transparent 65%); border-radius: 50%; }
+        .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--sage); margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 12px; position: relative; z-index: 1; }
+        .hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 32px; height: 1px; background: var(--sage); }
+        .contact-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 6rem); font-weight: 600; color: var(--white); line-height: 1.05; letter-spacing: -0.02em; position: relative; z-index: 1; }
+        .contact-hero h1 em { color: var(--amber); font-style: italic; }
+        .contact-hero p { font-size: 1rem; color: rgba(253,252,249,0.5); font-weight: 300; line-height: 1.8; max-width: 500px; margin: 24px auto 0; position: relative; z-index: 1; }
+
+        /* MAIN CONTENT */
+        .contact-main { padding: 100px 80px; background: var(--white); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+
+        /* INFO SIDE */
+        .contact-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 16px; }
+        .contact-info h2 em { font-style: italic; color: var(--moss); }
+        .contact-info p { font-size: 0.95rem; color: var(--gray); line-height: 1.9; font-weight: 300; margin-bottom: 48px; }
+        .info-cards { display: flex; flex-direction: column; gap: 16px; }
+        .info-card { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: var(--parchment); border-radius: 14px; border: 1px solid rgba(46,125,79,0.08); transition: transform 0.2s; }
+        .info-card:hover { transform: translateX(4px); }
+        .info-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(46,125,79,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+        .info-content label { font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--sage); display: block; margin-bottom: 4px; }
+        .info-content p { font-size: 0.9rem; color: var(--ink); font-weight: 400; margin-bottom: 0; line-height: 1.5; }
+
+        /* FORM SIDE */
+        .contact-form-wrap { background: var(--parchment); border-radius: 24px; padding: 48px; border: 1px solid rgba(46,125,79,0.08); }
+        .contact-form-wrap h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+        .contact-form-wrap p { font-size: 0.875rem; color: var(--gray); font-weight: 300; margin-bottom: 32px; }
+        .form-group { margin-bottom: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        label { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--forest); display: block; margin-bottom: 8px; }
+        input, textarea, select { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(46,125,79,0.15); border-radius: 10px; font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem; color: var(--ink); background: var(--white); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+        input:focus, textarea:focus, select:focus { border-color: var(--moss); box-shadow: 0 0 0 3px rgba(46,125,79,0.08); }
+        textarea { resize: vertical; min-height: 130px; }
+        .submit-btn { width: 100%; padding: 15px 32px; border-radius: 100px; background: var(--forest); color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: none; cursor: pointer; transition: all 0.25s; margin-top: 8px; }
+        .submit-btn:hover { background: var(--moss); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,74,40,0.25); }
+
+        /* SUCCESS MESSAGE */
+        .success-msg { background: rgba(46,125,79,0.1); border: 1px solid rgba(46,125,79,0.2); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; color: var(--forest); font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+
+        /* FAQ */
+        .faq-section { padding: 100px 80px; background: var(--parchment); }
+        .faq-header { text-align: center; margin-bottom: 60px; }
+        .faq-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3rem); font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
+        .faq-header h2 em { font-style: italic; color: var(--moss); }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 900px; margin: 0 auto; }
+        .faq-item { background: var(--white); border-radius: 14px; padding: 28px; border: 1px solid rgba(46,125,79,0.08); }
+        .faq-q { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+        .faq-a { font-size: 0.875rem; color: var(--gray); line-height: 1.75; font-weight: 300; }
+
+        /* FOOTER */
+        footer { background: #060d08; padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.04); }
+        .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .footer-brand em { color: var(--amber); font-style: italic; }
+        .footer-text { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+        .footer-text strong { color: var(--amber); }
+
+        @media (max-width: 1024px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+            .contact-main, .faq-section { padding-left: 40px; padding-right: 40px; }
+            .contact-hero { padding-left: 40px; padding-right: 40px; }
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 0 24px; }
+            .nav-center { display: none; }
+            .contact-hero, .contact-main, .faq-section { padding-left: 24px; padding-right: 24px; }
+            .contact-form-wrap { padding: 32px 24px; }
+            .form-row { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="{% url 'home' %}" class="brand">Fresh<em>Mart</em></a>
+    <div class="nav-center">
+        <a href="{% url 'product_list' %}">Shop</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}" class="active">Contact</a>
+    </div>
+    <div class="nav-actions">
+        {% if user.is_authenticated %}
+            <a href="{% url 'view_cart' %}" class="nav-pill pill-ghost">🛒 Cart</a>
+            <a href="{% url 'logout' %}" class="nav-pill pill-solid">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="nav-pill pill-ghost">Login</a>
+            <a href="{% url 'register' %}" class="nav-pill pill-solid">Get Started</a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="contact-hero">
+    <div class="hero-eyebrow">Get In Touch</div>
+    <h1>We'd love to <em>hear from you</em></h1>
+    <p>Have a question, feedback or just want to say hello? We're here to help and we'll get back to you as soon as possible.</p>
+</section>
+
+<!-- MAIN CONTACT -->
+<section class="contact-main">
+    <div class="contact-grid">
+        <!-- INFO -->
+        <div class="contact-info">
+            <h2>Let's <em>talk</em></h2>
+            <p>Whether you have a question about your order, want to partner with us, or just need help finding the right product — we're always happy to hear from you.</p>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <label>Location</label>
+                        <p>Accra, Ghana</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-content">
+                        <label>Email</label>
+                        <p>support@freshmart.gh</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <div class="info-content">
+                        <label>Phone</label>
+                        <p>+233 XX XXX XXXX</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🕐</div>
+                    <div class="info-content">
+                        <label>Working Hours</label>
+                        <p>Mon – Sat: 7am – 9pm<br>Sunday: 9am – 6pm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="contact-form-wrap">
+            <h3>Send us a message</h3>
+            <p>Fill in the form below and we'll get back to you within 24 hours.</p>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="success-msg">✅ {{ message }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="How can we help?" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us more about your enquiry..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message →</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="faq-header">
+        <h2>Frequently asked <em>questions</em></h2>
+    </div>
+    <div class="faq-grid">
+        <div class="faq-item">
+            <div class="faq-q">How long does delivery take?</div>
+            <div class="faq-a">We offer same-day delivery across Accra for orders placed before 2pm. Other areas may take 1-2 business days.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What payment methods do you accept?</div>
+            <div class="faq-a">We accept Mobile Money (MTN, Vodafone, AirtelTigo) and bank cards via our secure Paystack payment gateway.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What if my product is not fresh?</div>
+            <div class="faq-a">We guarantee 100% freshness. If you receive anything that doesn't meet your expectations, contact us and we'll replace it immediately.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Can I track my order?</div>
+            <div class="faq-a">Yes! Once your order is placed you can track its status in real time from your My Orders page in your account.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Do you deliver outside Accra?</div>
+            <div class="faq-a">We currently deliver across Greater Accra. We're expanding to other regions soon — stay tuned for updates!</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How do I cancel or modify an order?</div>
+            <div class="faq-a">Contact us within 1 hour of placing your order and we'll do our best to accommodate any changes or cancellations.</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <a href="{% url 'home' %}" class="footer-brand">Fresh<em>Mart</em></a>
+    <span class="footer-text">© 2026 <strong>FreshMart</strong> — Ghana's Freshest Supermarket</span>
+</footer>
+
+</body>
+</html>

@@ -657,8 +657,8 @@
     <a href="{% url 'home' %}" class="brand">Fresh<em>Mart</em></a>
     <div class="nav-center">
         <a href="{% url 'product_list' %}">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="{% url 'about' %}">About</a>
+<a href="{% url 'contact' %}">Contact</a>
     </div>
     <div class="nav-actions">
         {% if user.is_authenticated %}
@@ -845,12 +845,8 @@
         <ul class="footer-links">
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'product_list' %}">Shop</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-    <div>
-        <div class="footer-col-title">Account</div>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+<li><a href="{% url 'contact' %}">Contact</a></li>-title">Account</div>
         <ul class="footer-links">
             <li><a href="{% url 'register' %}">Register</a></li>
             <li><a href="{% url 'login' %}">Login</a></li>
